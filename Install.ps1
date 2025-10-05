@@ -1,4 +1,4 @@
-# iex (iwr 'https://gist.githubusercontent.com/dfeies/d21f6681bf76c1ff6815451e531166bf/raw/test.ps1')
+# iex (iwr 'https://raw.githubusercontent.com/dfeies/MRLPerf/refs/heads/main/Install.ps1')
 
 Write-Host 'Installing MRLPerf...'
 $OutPath = (Join-Path $HOME 'Desktop\MRLPerf')
