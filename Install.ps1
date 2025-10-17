@@ -1,9 +1,33 @@
 # iex (iwr 'https://raw.githubusercontent.com/dfeies/MRLPerf/refs/heads/main/Install.ps1')
 
 Write-Host 'Installing MRLPerf...'
-$OutPath = (Join-Path $HOME 'Desktop\MRLPerf')
-$OutFile = (Join-Path $OutPath 'Hello.ps1')
-$HelloPS = 'https://gist.githubusercontent.com/dfeies/d21f6681bf76c1ff6815451e531166bf/raw/Hello.ps1'
-New-Item -Path $OutPath -ItemType Directory -Force | Out-Null
-Invoke-WebRequest -Uri $HelloPS -OutFile $OutFile
-Write-Host 'Installed on desktop, MRLPerf folder.'
+
+# List of files to download
+$fileList = @(
+	'README.md',
+	'Install.ps1',
+	'MRLTriage.cmd',
+	'MRLTriage_10s.cmd',
+	'MRLTriage.wprp'
+)
+
+# Destination folder
+$destFolder = "$env:USERPROFILE\Desktop\MRLPerf"
+
+# Create destination folder if it doesn't exist
+if (-not (Test-Path $destFolder)) {
+	New-Item -ItemType Directory -Path $destFolder | Out-Null
+}
+
+# Base URL for downloads
+$baseUrl = 'https://raw.githubusercontent.com/dfeies/MRLPerf/refs/heads/main/'
+
+# Download each file
+foreach ($file in $fileList) {
+	$url = "$baseUrl$file"
+	$destPath = Join-Path $destFolder $file
+	Invoke-WebRequest -Uri $url -OutFile $destPath -UseBasicParsing
+}
+
+Write-Host 'Installed to Desktop\\MRLPerf.'
+
