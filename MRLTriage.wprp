@@ -1,0 +1,143 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes'?>
+<!--
+    run as admin
+    wpr -start <this_file>.wprp
+    <run scenario>
+    wpr -stop
+-->
+<WindowsPerformanceRecorder Version="1.0">
+    <Profiles>
+        <SystemCollector Id="MySystemCollector" Name="NT Kernel Logger">
+            <BufferSize Value="1024"/>
+            <Buffers Value="120"/>
+        </SystemCollector>
+        <EventCollector Id="MyEventCollector" Name="MyEventCollector">
+            <BufferSize Value="1024"/>
+            <Buffers Value="120"/>
+        </EventCollector>
+
+        <SystemProvider Id="MySystemProvider">
+            <Keywords>
+                <Keyword Value="ProcessThread"/>
+                <Keyword Value="Loader"/>
+                <Keyword Value="CSwitch"/> <!-- CompactCSwitch -->
+                <Keyword Value="ReadyThread"/>
+                <Keyword Value="SampledProfile"/>
+                <Keyword Value="CpuConfig"/>
+                <Keyword Value="DiskIO" />
+                <Keyword Value="DiskIOInit" />
+                <Keyword Value="DPC"/>
+                <!-- <Keyword Value="DPCQueue"/> -->
+                <Keyword Value="Interrupt"/>
+                <Keyword Value="MemoryInfo"/>
+                <Keyword Value="MemoryInfoWS"/>
+                <Keyword Value="Power"/>
+                <Keyword Value="IdleStates"/>
+            </Keywords>
+            <Stacks>
+              <Stack Value="SampledProfile"/>
+              <Stack Value="CSwitch" />
+              <Stack Value="ReadyThread" />            
+            </Stacks>
+        </SystemProvider>
+
+        <EventProvider Id="TcpipProvider" Name="Microsoft-Windows-TCPIP" Level="5" NonPagedMemory="true" />
+        <EventProvider Id="DotNETRuntimeRundown" Name="Microsoft-Windows-DotNETRuntimeRundown" Level="5" NonPagedMemory="true" />
+        <EventProvider Id="DotNETRuntime" Name="Microsoft-Windows-DotNETRuntime" Level="5" NonPagedMemory="true">
+            <Keywords>
+                <Keyword Value="0x10"/> <!-- JitKeyword -->
+            </Keywords>
+        </EventProvider>
+
+        <!-- CPU Frequencies -->
+        <EventProvider Id="Microsoft-Windows-Kernel-Processor-Power" Name="Microsoft-Windows-Kernel-Processor-Power" NonPagedMemory="true" Level="5" />
+
+        <!-- GPU -->
+        <EventProvider Id="Microsoft.Windows.DxgKrnl" Name="Microsoft-Windows-DxgKrnl" NonPagedMemory="true" Strict="true" Level="5">
+            <Keywords>
+                <Keyword Value="0x45"/>
+            </Keywords>
+            <CaptureStateOnSave>
+                <Keyword Value="0x45"/>
+            </CaptureStateOnSave>
+        </EventProvider>
+        <EventProvider Id="DxgKrnlTelemetry" Name="c6998471-62cd-424d-a9a3-fe4c1fa378a4" NonPagedMemory="true" Level="5" />
+        <EventProvider Id="Microsoft.Windows.DXGI" Name="CA11C036-0102-4A2D-A6AD-F03CFED5D3C9" NonPagedMemory="true" Level="5" />
+        <EventProvider Id="Microsoft.Windows.Graphics.DxgDiagnostics" Name="221d444c-d07e-4fde-b425-15b746cf535b" NonPagedMemory="true" Level="5" />
+
+        <!-- Microsoft Defender -->
+        <EventProvider Id="Microsoft-Antimalware-Engine" Name="0a002690-3839-4e3a-b3b6-96d8df868d99" />
+        <EventProvider Id="Microsoft-Antimalware-Service" Name="Microsoft-Antimalware-Service" />
+        <EventProvider Id="Microsoft-Antimalware-RTP" Name="Microsoft-Antimalware-RTP" />
+        <EventProvider Id="Microsoft-Antimalware-AMFilter" Name="Microsoft-Antimalware-AMFilter" />
+        <EventProvider Id="Microsoft-Antimalware-Protection" Name="Microsoft-Antimalware-Protection" />
+
+        <!-- OpenXR App Runtime and Service -->
+        <EventProvider Id="Microsoft.MixedReality.OpenXR" Name="5B3EB04F-4847-4025-8DE2-CDCA3D77C5A3" />
+        <EventProvider Id="Microsoft.MixedReality.OpenXR.Continuous" Name="B13F37A1-C0F5-4A7B-963C-7EEBED6AD9D0"/>
+        <EventProvider Id="Microsoft.MixedReality.OpenXR.FrameTiming" Name="3D5AC20B-03A7-4E0D-B8C4-4B558DD9163D" />
+        <EventProvider Id="Microsoft.MixedReality.OpenXRSvc" Name="F2A59A30-FED6-4A22-83C2-E9AABF0A6E11" />
+        <EventProvider Id="Microsoft.MixedReality.OpenXRSvc.Continuous" Name="85C0F388-B6A9-45F2-B95C-7E23044B6E7D" />
+        <EventProvider Id="Microsoft.MixedReality.OpenXRSvc.FrameTiming" Name="5ECD1455-530E-4EF6-B2CE-A952EF645C8C" />
+
+        <!-- Experience -->
+        <EventProvider Id="Microsoft.MixedReality.Experience" Name="1A8338DB-EBDA-5F24-92E0-271DF61203BF" />
+        <EventProvider Id="WBMonInfo" Name="64BB1026-88F7-5190-D4B0-68EBE0115E0D" />
+
+        <!-- MrBackgroundHost -->
+        <EventProvider Id="Microsoft.MixedReality.MrBackgroundHost" Name="5f2be835-4931-58da-106b-a75dd6d9d4f5" />
+
+        <Profile Id="Trace.Verbose.File" Name="Trace" Description="Trace" DetailLevel="Verbose" LoggingMode="File">
+            <Collectors>
+                <SystemCollectorId Value="MySystemCollector">
+                    <SystemProviderId Value="MySystemProvider" />
+                </SystemCollectorId>
+                <EventCollectorId Value="MyEventCollector">
+                    <EventProviders>
+                        <EventProviderId Value="TcpipProvider"/>
+                        <EventProviderId Value="DotNETRuntimeRundown"/>
+                        <EventProviderId Value="DotNETRuntime"/>
+                        <EventProviderId Value="Microsoft-Windows-Kernel-Processor-Power"/>
+                        <EventProviderId Value="Microsoft.Windows.DxgKrnl"/>
+                        <EventProviderId Value="Microsoft.Windows.DXGI"/>
+                        <EventProviderId Value="Microsoft.Windows.Graphics.DxgDiagnostics"/>
+                        <EventProviderId Value="DxgKrnlTelemetry"/>
+                        <!-- Microsoft Defender -->
+                        <EventProviderId Value="Microsoft-Antimalware-Service" />
+                        <EventProviderId Value="Microsoft-Antimalware-RTP" />
+                        <EventProviderId Value="Microsoft-Antimalware-AMFilter" />
+                        <EventProviderId Value="Microsoft-Antimalware-Protection" />
+                        <EventProviderId Value="Microsoft-Antimalware-Engine" />
+                        <!-- OpenXR App Runtime and Service -->
+                        <EventProviderId Value="Microsoft.MixedReality.OpenXR" />
+                        <EventProviderId Value="Microsoft.MixedReality.OpenXR.Continuous" />
+                        <EventProviderId Value="Microsoft.MixedReality.OpenXR.FrameTiming" />
+                        <EventProviderId Value="Microsoft.MixedReality.OpenXRSvc" />
+                        <EventProviderId Value="Microsoft.MixedReality.OpenXRSvc.Continuous" />
+                        <EventProviderId Value="Microsoft.MixedReality.OpenXRSvc.FrameTiming" />
+                        <!-- Experience -->
+                        <EventProviderId Value="Microsoft.MixedReality.Experience" />
+                        <EventProviderId Value="WBMonInfo" />
+                        <!-- MrBackgroundHost -->
+                        <EventProviderId Value="Microsoft.MixedReality.MrBackgroundHost" />
+                    </EventProviders>
+                </EventCollectorId>
+            </Collectors>
+            <TraceMergeProperties>
+                <TraceMergeProperty Id="TraceMerge_Base" Name="TraceMerge_Base">
+                    <FileCompression Value="true"/>
+                    <CustomEvents>
+                        <CustomEvent Value="ImageId"/>
+                        <CustomEvent Value="BuildInfo"/>
+                        <CustomEvent Value="VolumeMapping"/>
+                        <CustomEvent Value="EventMetadata"/>
+                        <CustomEvent Value="PerfTrackMetadata"/>
+                        <CustomEvent Value="WinSAT"/>
+                        <CustomEvent Value="NetworkInterface"/>
+                    </CustomEvents>
+                </TraceMergeProperty>
+            </TraceMergeProperties>
+        </Profile>
+        <Profile Id="Trace.Verbose.Memory" Name="Trace" Description="Trace" Base="Trace.Verbose.File" DetailLevel="Verbose" LoggingMode="Memory"/>
+    </Profiles>
+</WindowsPerformanceRecorder>
