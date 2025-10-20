@@ -80,6 +80,9 @@
         <EventProvider Id="Microsoft.MixedReality.OpenXRSvc.Continuous" Name="85C0F388-B6A9-45F2-B95C-7E23044B6E7D" />
         <EventProvider Id="Microsoft.MixedReality.OpenXRSvc.FrameTiming" Name="5ECD1455-530E-4EF6-B2CE-A952EF645C8C" />
 
+        <!-- App Remoting -->
+        <EventProvider Id="Microsoft.Holographic.AppRemoting" Name="3313B099-E54E-4601-941A-FBB0B20478B7" Level="4" />
+
         <!-- Experience -->
         <EventProvider Id="Microsoft.MixedReality.Experience" Name="1A8338DB-EBDA-5F24-92E0-271DF61203BF" />
         <EventProvider Id="WBMonInfo" Name="64BB1026-88F7-5190-D4B0-68EBE0115E0D" />
@@ -115,6 +118,8 @@
                         <EventProviderId Value="Microsoft.MixedReality.OpenXRSvc" />
                         <EventProviderId Value="Microsoft.MixedReality.OpenXRSvc.Continuous" />
                         <EventProviderId Value="Microsoft.MixedReality.OpenXRSvc.FrameTiming" />
+                        <!-- App Remoting -->
+                        <EventProviderId Value="Microsoft.Holographic.AppRemoting" />
                         <!-- Experience -->
                         <EventProviderId Value="Microsoft.MixedReality.Experience" />
                         <EventProviderId Value="WBMonInfo" />
