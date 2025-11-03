@@ -6,3 +6,4 @@ To install, run in PowerShell:
 ```ps
 iex (iwr 'https://raw.githubusercontent.com/dfeies/MRLPerf/refs/heads/main/Install.ps1')
 ```
+Then right click on MRLink_10s.cmd and run as admin.
