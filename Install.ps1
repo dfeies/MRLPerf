@@ -29,5 +29,7 @@ foreach ($file in $fileList) {
 	Invoke-WebRequest -Uri $url -OutFile $destPath -UseBasicParsing
 }
 
-Write-Host 'Installed to Desktop\\MRLPerf.'
+Write-Host "Installed to $destFolder"
+
+explorer $destFolder
 

@@ -1,19 +1,13 @@
 <?xml version='1.0' encoding='utf-8' standalone='yes'?>
-<!--
-    run as admin
-    wpr -start <this_file>.wprp
-    <run scenario>
-    wpr -stop
--->
 <WindowsPerformanceRecorder Version="1.0">
     <Profiles>
         <SystemCollector Id="MySystemCollector" Name="NT Kernel Logger">
             <BufferSize Value="1024"/>
-            <Buffers Value="120"/>
+            <Buffers Value="512"/>
         </SystemCollector>
         <EventCollector Id="MyEventCollector" Name="MyEventCollector">
             <BufferSize Value="1024"/>
-            <Buffers Value="120"/>
+            <Buffers Value="256"/>
         </EventCollector>
 
         <SystemProvider Id="MySystemProvider">
@@ -50,7 +44,7 @@
         </EventProvider>
 
         <!-- CPU Frequencies -->
-        <EventProvider Id="Microsoft-Windows-Kernel-Processor-Power" Name="Microsoft-Windows-Kernel-Processor-Power" NonPagedMemory="true" Level="5" />
+        <!-- <EventProvider Id="Microsoft-Windows-Kernel-Processor-Power" Name="Microsoft-Windows-Kernel-Processor-Power" NonPagedMemory="true" Level="5" /> -->
 
         <!-- GPU -->
         <EventProvider Id="Microsoft.Windows.DxgKrnl" Name="Microsoft-Windows-DxgKrnl" NonPagedMemory="true" Strict="true" Level="5">
@@ -100,7 +94,7 @@
                         <EventProviderId Value="TcpipProvider"/>
                         <EventProviderId Value="DotNETRuntimeRundown"/>
                         <EventProviderId Value="DotNETRuntime"/>
-                        <EventProviderId Value="Microsoft-Windows-Kernel-Processor-Power"/>
+                        <!-- <EventProviderId Value="Microsoft-Windows-Kernel-Processor-Power"/> -->
                         <EventProviderId Value="Microsoft.Windows.DxgKrnl"/>
                         <EventProviderId Value="Microsoft.Windows.DXGI"/>
                         <EventProviderId Value="Microsoft.Windows.Graphics.DxgDiagnostics"/>
