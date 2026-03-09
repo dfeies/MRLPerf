@@ -7,7 +7,6 @@ $fileList = @(
 	'README.md',
 	'Install.ps1',
 	'MRLTriage.cmd',
-	'MRLTriage_10s.cmd',
 	'MRLTriage.wprp'
 )
 
