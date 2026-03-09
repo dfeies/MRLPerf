@@ -6,4 +6,5 @@ To install, run in PowerShell:
 ```ps
 iex (iwr 'https://raw.githubusercontent.com/dfeies/MRLPerf/refs/heads/main/Install.ps1')
 ```
-Then open the MRLPerf folder from desktop, right click on MRLink_10s.cmd and run as admin.
+The script opens explorer in the Desktop folder where the scripts are installed.  
+Right click on MRLTriage.cmd and run as admin.
