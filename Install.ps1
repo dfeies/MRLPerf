@@ -6,12 +6,13 @@ Write-Host 'Installing MRLPerf...'
 $fileList = @(
 	'README.md',
 	'Install.ps1',
+	'nvsmi.exe',
 	'MRLTriage.cmd',
 	'MRLTriage.wprp'
 )
 
 # Destination folder
-$destFolder = "$env:USERPROFILE\Desktop\MRLPerf"
+$destFolder = "$env:USERPROFILE\Downloads\MRLPerf"
 
 # Create destination folder if it doesn't exist
 if (-not (Test-Path $destFolder)) {
