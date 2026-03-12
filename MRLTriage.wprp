@@ -10,7 +10,7 @@
             <Buffers Value="256"/>
         </EventCollector>
 
-        <Profile Id="Trace.Verbose.File" Name="Trace" Description="Trace" DetailLevel="Verbose" LoggingMode="File">
+        <Profile Id="Trace.Verbose.File" Name="Trace" Description="Trace" DetailLevel="Verbose" LoggingMode="File" Default="true">
             <Collectors>
                 <SystemCollectorId Value="MySystemCollector">
                     <SystemProvider Id="MySystemProvider">

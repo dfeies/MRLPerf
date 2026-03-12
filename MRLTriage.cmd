@@ -1,7 +1,15 @@
 @echo off
+setlocal
 cd /d %~dp0
+
+net session >nul 2>&1
+if not %ERRORLEVEL%==0 (
+	echo This script requires administrative privileges. Please run as Administrator.
+	exit /b
+)
+
 set NAME=MRLTriage
-::wpr -cancel
+wpr -cancel >nul 2>&1
 wpr -start %NAME%.wprp -filemode
 set /P DUMMY=Press Enter to stop tracing...
 
@@ -17,3 +25,4 @@ echo %ETL%
 copy /Y "%LOCALAPPDATA%\Unity\Editor\Editor.log" "%TimeStamp%_%NAME%_Editor.log"
 
 set /P DUMMY=Press Enter to close this window...
+endlocal
