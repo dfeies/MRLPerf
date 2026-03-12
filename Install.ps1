@@ -19,8 +19,8 @@ if (-not (Test-Path $destFolder)) {
 	New-Item -ItemType Directory -Path $destFolder | Out-Null
 }
 
-# Base URL for downloads
-$baseUrl = 'https://raw.githubusercontent.com/dfeies/MRLPerf/refs/heads/main/'
+# Base URL for downloads (use github.com/raw to resolve LFS files)
+$baseUrl = 'https://github.com/dfeies/MRLPerf/raw/refs/heads/main/'
 
 # Download each file
 foreach ($file in $fileList) {
