@@ -1,0 +1,68 @@
+name: Release Zip
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        description: 'Existing or new tag name to release, for example v1.0.0'
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository with LFS
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+          fetch-depth: 0
+
+      - name: Fetch LFS objects
+        run: git lfs pull
+
+      - name: Resolve release tag
+        id: vars
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            tag_name="${{ github.event.inputs.tag_name }}"
+          else
+            tag_name="${{ github.ref_name }}"
+          fi
+
+          if [ -z "$tag_name" ]; then
+            echo "::error::No tag name was provided." >&2
+            exit 1
+          fi
+
+          echo "tag_name=$tag_name" >> "$GITHUB_OUTPUT"
+
+      - name: Ensure tag exists locally
+        run: |
+          tag_name="${{ steps.vars.outputs.tag_name }}"
+          git fetch origin "refs/tags/$tag_name:refs/tags/$tag_name"
+          git checkout "$tag_name"
+
+      - name: Stage release payload
+        run: |
+          mkdir -p package
+          cp README.md nvsmi.exe MRLTriage.cmd MRLTriage.wprp package/
+
+      - name: Create release zip
+        run: |
+          rm -f MRLPerf.zip
+          cd package
+          zip -r ../MRLPerf.zip .
+
+      - name: Create or update release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.vars.outputs.tag_name }}
+          files: MRLPerf.zip
+          generate_release_notes: true
