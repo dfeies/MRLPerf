@@ -16,10 +16,13 @@ permissions:
 jobs:
   release:
     runs-on: ubuntu-latest
+    env:
+      # TODO: Remove after June 2026 when Node 24 becomes the GitHub Actions default
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
     steps:
       - name: Checkout repository with LFS
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           lfs: true
           fetch-depth: 0
