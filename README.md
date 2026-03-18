@@ -2,12 +2,10 @@
 
 MRLink performance scripts and tools.
 
-To install, run in PowerShell:
-```ps
-iex (iwr 'https://raw.githubusercontent.com/dfeies/MRLPerf/refs/heads/main/Install.ps1')
-```
-The script opens explorer in the Downloads folder where the scripts are installed.  
-First, if you have an NVidia GPU, run nvsmi.exe from this folder. It's a tool that adds GPU data to the trace using nvidia-smi.  
-Right click on MRLTriage.cmd and run as admin.  
-Then send the ETL and the LOG file for investigation.
-Now you can close nvsmi.exe.  
+## Instructions
+
+- Go to https://github.com/dfeies/MRLPerf/releases
+- Download the latest release and extract it to a folder of your choice.
+- Run MRLTriage.cmd as admin and follow the instructions in the command prompt.
+- Send the generated ETL files (*.etl and *.etl.00n) for analysis.
+- Then you can close the nvsmi.exe app, it's only used to get GPU data for the trace.
