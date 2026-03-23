@@ -10,7 +10,7 @@ if not %ERRORLEVEL%==0 (
 )
 
 echo Starting nvsmi.exe to log GPU events ...
-nvsmi.exe
+start "" nvsmi.exe
 
 echo Starting WPR trace (max 1 min), press Enter to stop ...
 set NAME=MRLTriage
@@ -41,7 +41,7 @@ if %ERRORLEVEL% neq 0 (
 )
 
 for /F %%a in ('echo prompt $E ^| cmd') do set "ESC=%%a"
-echo %ESC%[92mDone. Send the ETLs from %~dp0 for analysis (*.etl and *.etl.00n).%ESC%[0m
+echo %ESC%[92mDone. Send the ETLs from %~dp0 for analysis (*.etl and *.etl.00*).%ESC%[0m
 
 set /P DUMMY=Press Enter to close this window...
 endlocal
