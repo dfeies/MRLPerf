@@ -55,7 +55,7 @@ jobs:
       - name: Stage release payload
         run: |
           mkdir -p package
-          cp README.md nvsmi.exe MRLTriage.cmd MRLTriage.wprp package/
+          cp README.md nvsmi.exe MRLTriage.cmd MRLTriage.wprp MRLTriage_Lite.cmd MRLTriage_Lite.wprp package/
 
       - name: Create release zip
         run: |
