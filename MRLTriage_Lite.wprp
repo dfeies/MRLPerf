@@ -29,13 +29,9 @@
                             <Keyword Value="Interrupt" />
                             <Keyword Value="MemoryInfo" />
                             <Keyword Value="MemoryInfoWS" />
-                            <Keyword Value="Power"/>
-                            <Keyword Value="IdleStates"/>
                         </Keywords>
                         <Stacks>
                             <Stack Value="SampledProfile" />
-                            <Stack Value="CSwitch" />
-                            <Stack Value="ReadyThread" />
                         </Stacks>
                     </SystemProvider>
                 </SystemCollectorId>
