@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes'?>
+<WindowsPerformanceRecorder Version="1.0">
+    <Profiles>
+        <SystemCollector Id="MySystemCollector" Name="NT Kernel Logger" />
+        <EventCollector Id="MyEventCollector" Name="MyEventCollector" />
+
+        <Profile Id="Trace.Verbose.File" Name="Trace" Description="Trace" DetailLevel="Verbose" LoggingMode="File">
+            <Collectors>
+                <SystemCollectorId Value="MySystemCollector">
+                    <BufferSize Value="1020" />
+                    <Buffers Value="256"/>
+                    <SystemProvider Id="MySystemProvider">
+                        <Keywords>
+                            <Keyword Value="ProcessThread" />
+                            <Keyword Value="Loader" />
+                            <Keyword Value="SampledProfile" />
+                            <Keyword Value="CpuConfig" />
+                            <Keyword Value="DPC" />
+                            <Keyword Value="Interrupt" />
+                            <Keyword Value="IdleStates" />
+                        </Keywords>
+                        <Stacks>
+                            <Stack Value="SampledProfile" />
+                        </Stacks>
+                    </SystemProvider>
+                </SystemCollectorId>
+                <EventCollectorId Value="MyEventCollector">
+                    <BufferSize Value="1020" />
+                    <Buffers Value="256"/>
+                    <EventProviders>
+                        <EventProvider Id="Microsoft-Windows-Kernel-Process" Name="2839ff94-8f12-4e1b-82e3-af7af77a450f" NonPagedMemory="true" />
+                    </EventProviders>
+                </EventCollectorId>
+            </Collectors>
+            <TraceMergeProperties>
+                <TraceMergeProperty Id="TraceMerge_Base" Name="TraceMerge_Base">
+                    <FileCompression Value="true" />
+                    <CustomEvents>
+                        <CustomEvent Value="ImageId" />
+                        <CustomEvent Value="BuildInfo" />
+                        <CustomEvent Value="VolumeMapping" />
+                        <CustomEvent Value="EventMetadata" />
+                        <CustomEvent Value="PerfTrackMetadata" />
+                        <CustomEvent Value="WinSAT" />
+                        <CustomEvent Value="NetworkInterface" />
+                    </CustomEvents>
+                </TraceMergeProperty>
+            </TraceMergeProperties>
+        </Profile>
+        <Profile Id="Trace.Verbose.Memory" Name="Trace" Description="Trace" Base="Trace.Verbose.File" DetailLevel="Verbose" LoggingMode="Memory" />
+    </Profiles>
+</WindowsPerformanceRecorder>

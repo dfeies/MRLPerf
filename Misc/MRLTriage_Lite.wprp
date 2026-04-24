@@ -1,15 +1,8 @@
 <?xml version='1.0' encoding='utf-8' standalone='yes'?>
 <WindowsPerformanceRecorder Version="1.0">
     <Profiles>
-        <SystemCollector Id="MySystemCollector" Name="NT Kernel Logger">
-            <BufferSize Value="1020" />
-            <Buffers Value="3" PercentageOfTotalMemory="true" MaximumBufferSpace="100" />
-        </SystemCollector>
-
-        <EventCollector Id="MyEventCollector" Name="MyEventCollector">
-            <BufferSize Value="1020" />
-            <Buffers Value="3" PercentageOfTotalMemory="true" MaximumBufferSpace="100" />
-        </EventCollector>
+        <SystemCollector Id="MySystemCollector" Name="NT Kernel Logger" />
+        <EventCollector Id="MyEventCollector" Name="MyEventCollector" />
 
         <Profile Id="Trace.Verbose.File" Name="Trace" Description="Trace" DetailLevel="Verbose" LoggingMode="File" Default="true">
             <Collectors>

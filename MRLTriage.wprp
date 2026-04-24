@@ -45,13 +45,6 @@
                         <EventProvider Id="EventTracing" Name="Microsoft-Windows-Kernel-EventTracing" NonPagedMemory="true" />
                         <!-- Networking -->
                         <EventProvider Id="TcpipProvider" Name="Microsoft-Windows-TCPIP" Level="5" NonPagedMemory="true" />
-                        <!-- DotNET -->
-                        <EventProvider Id="DotNETRuntimeRundown" Name="Microsoft-Windows-DotNETRuntimeRundown" Level="5" NonPagedMemory="true" />
-                        <EventProvider Id="DotNETRuntime" Name="Microsoft-Windows-DotNETRuntime" Level="5" NonPagedMemory="true">
-                            <Keywords>
-                                <Keyword Value="0x10"/> <!-- JitKeyword -->
-                            </Keywords>
-                        </EventProvider>
                         <!-- GPU -->
                         <EventProvider Id="Microsoft-Windows-DxgKrnl" Name="Microsoft-Windows-DxgKrnl" NonPagedMemory="true" Strict="true" Level="5">
                             <Keywords>
