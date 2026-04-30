@@ -1,5 +1,5 @@
 @echo off
-setlocal
+setlocal EnableDelayedExpansion
 cd /d %~dp0
 
 net session >nul 2>&1
@@ -29,15 +29,13 @@ echo %ETL%
 echo Flushing the MixedRealityLink autologger ...
 logman.exe update MixedRealityLinkLog -fd -ets
 if %ERRORLEVEL% neq 0 (
-	echo ERROR: Failed to flush MixedRealityLinkLog. ERRORLEVEL=%ERRORLEVEL%
-	exit /b %ERRORLEVEL%
-)
-
-echo Copying MixedRealityLink ETLs to this folder ...
-copy /Y %SystemRoot%\system32\LogFiles\MixedRealityLink.etl* %~dp0
-if %ERRORLEVEL% neq 0 (
-	echo ERROR: Failed to copy MixedRealityLink ETL files. ERRORLEVEL=%ERRORLEVEL%
-	exit /b %ERRORLEVEL%
+	echo WARNING: Failed to flush MixedRealityLinkLog. ERRORLEVEL=%ERRORLEVEL%
+) else (
+	echo Copying MixedRealityLink ETLs to this folder ...
+	copy /Y %SystemRoot%\system32\LogFiles\MixedRealityLink.etl* %~dp0
+	if !ERRORLEVEL! neq 0 (
+		echo ERROR: Failed to copy MixedRealityLink ETL files. ERRORLEVEL=!ERRORLEVEL!
+	)
 )
 
 for /F %%a in ('echo prompt $E ^| cmd') do set "ESC=%%a"
